@@ -10,14 +10,16 @@ load_dotenv(dotenv_path=os.path.join(BASE_DIR, '.env'))
 
 def get_env():
     """Retorna las variables de entorno configuradas."""
+    smtp_server = os.getenv("SMTP_SERVER")
+    smtp_port = os.getenv("SMTP_PORT")
     return {
         "ucm_user": os.getenv("UCM_USER"),
         "ucm_pass": os.getenv("UCM_PASS"),
         "email_user": os.getenv("EMAIL_USER"),
         "email_pass": os.getenv("EMAIL_PASS"),
         "email_to": os.getenv("EMAIL_TO"),
-        "SMTP_SERVER": os.getenv("SMTP_SERVER", "smtp.gmail.com"),
-        "SMTP_PORT": os.getenv("SMTP_PORT", "465")
+        "SMTP_SERVER": smtp_server if smtp_server else "smtp.gmail.com",
+        "SMTP_PORT": smtp_port if smtp_port else "465"
     }
 
 def send_email(subject, body):
