@@ -1,0 +1,22 @@
+# Credenciales y variables de entorno
+.env
+
+# Archivos temporales de error (Capturas del scraper)
+login_error.png
+
+# Python caché
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# IDEs y editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Configuración del Agente AI
+.agents/
+.gemini/

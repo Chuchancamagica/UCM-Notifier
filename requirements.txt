@@ -1,0 +1,7 @@
+selenium
+python-dotenv
+yagmail
+pandas
+matplotlib
+seaborn
+numpy

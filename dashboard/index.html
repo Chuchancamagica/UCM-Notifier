@@ -1,0 +1,2470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Académico Dinámico</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #f093fb;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --info: #3498db;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            min-height: 100vh;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode {
+            --bg-light: #2c3e50;
+            --white: #34495e;
+            --text-dark: #ecf0f1;
+            --text-light: #bdc3c7;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--text-dark) 0%, var(--info) 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 1s ease;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .controls-panel {
+            background: var(--bg-light);
+            padding: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .control-group label {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+
+        .control-input {
+            padding: 10px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            background: var(--white);
+            color: var(--text-dark);
+        }
+
+        .control-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 40px;
+            background: var(--bg-light);
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            animation: countUp 2s ease;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .charts-section {
+            padding: 40px;
+            background: var(--white);
+        }
+
+        .chart-container {
+            margin-bottom: 50px;
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .chart-container:hover {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .chart-title {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 400px;
+            margin: 20px 0;
+        }
+
+        .chart-wrapper.large {
+            height: 500px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            z-index: 10;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        .subject-list {
+            max-height: 300px;
+            overflow-y: auto;
+            background: var(--bg-light);
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .subject-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin: 5px 0;
+            background: var(--white);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .subject-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .subject-name {
+            font-weight: 500;
+            color: var(--text-dark);
+            flex: 1;
+        }
+
+        .subject-grade {
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 20px;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .grade-excellent { background: var(--success); }
+        .grade-good { background: var(--info); }
+        .grade-regular { background: var(--warning); }
+        .grade-poor { background: var(--danger); }
+
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            font-size: 0.9rem;
+        }
+
+        .export-panel {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes countUp {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .header h1 { font-size: 2rem; }
+            .controls-panel { flex-direction: column; }
+            .stats-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); padding: 20px; }
+            .charts-section { padding: 20px; }
+        }
+
+        .tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .highlight-card {
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+            animation: fadeInUp 1s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="theme-toggle" onclick="toggleTheme()">
+                <i class="fas fa-moon"></i>
+            </button>
+            <h1><i class="fas fa-chart-line"></i> Dashboard Académico Dinámico</h1>
+            <p>Análisis Interactivo del Rendimiento Académico</p>
+        </div>
+
+        <div class="controls-panel">
+            <div class="control-group">
+                <label for="searchSubject">🔍 Buscar Materia</label>
+                <input type="text" id="searchSubject" class="control-input" placeholder="Nombre de la materia..." onkeyup="filterSubjects()">
+            </div>
+            
+            <div class="control-group">
+                <label for="gradeFilter">📊 Filtrar por Nota</label>
+                <select id="gradeFilter" class="control-input" onchange="applyFilters()">
+                    <option value="all">Todas las notas</option>
+                    <option value="excellent">Excelente (6.5-7.0)</option>
+                    <option value="good">Bueno (6.0-6.4)</option>
+                    <option value="regular">Regular (5.5-5.9)</option>
+                    <option value="poor">Deficiente (<5.5)</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="sortBy">🔄 Ordenar por</label>
+                <select id="sortBy" class="control-input" onchange="applyFilters()">
+                    <option value="name">Nombre</option>
+                    <option value="grade-desc">Nota (Mayor a Menor)</option>
+                    <option value="grade-asc">Nota (Menor a Mayor)</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="chartType">📈 Tipo de Gráfico</label>
+                <select id="chartType" class="control-input" onchange="updateMainChart()">
+                    <option value="bar">Barras</option>
+                    <option value="line">Líneas</option>
+                    <option value="radar">Radar</option>
+                    <option value="polarArea">Área Polar</option>
+                </select>
+            </div>
+
+            <button class="btn btn-primary" onclick="resetFilters()">
+                <i class="fas fa-refresh"></i> Resetear Filtros
+            </button>
+        </div>
+
+        <div id="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card" onclick="highlightCategory('all')">
+                    <div class="stat-number" id="totalSubjects">0</div>
+                    <div class="stat-label">Total Materias</div>
+                </div>
+                <div class="stat-card" onclick="highlightCategory('excellent')">
+                    <div class="stat-number" id="avgGrade">0.0</div>
+                    <div class="stat-label">Promedio General</div>
+                </div>
+                <div class="stat-card" onclick="highlightCategory('good')">
+                    <div class="stat-number" id="maxGrade">0.0</div>
+                    <div class="stat-label">Nota Máxima</div>
+                </div>
+                <div class="stat-card" onclick="highlightCategory('regular')">
+                    <div class="stat-number" id="minGrade">0.0</div>
+                    <div class="stat-label">Nota Mínima</div>
+                </div>
+                <div class="stat-card" onclick="highlightCategory('poor')">
+                    <div class="stat-number" id="passedSubjects">0</div>
+                    <div class="stat-label">Materias Aprobadas</div>
+                </div>
+                <div class="stat-card" onclick="showTopSubjects()">
+                    <div class="stat-number" id="excellentSubjects">0</div>
+                    <div class="stat-label">Rendimiento Excelente</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="charts-section">
+            <div class="highlight-card">
+                <h3><i class="fas fa-magic"></i> Dashboard Interactivo</h3>
+                <p>Haz clic en las estadísticas, filtra por categorías, cambia tipos de gráficos y explora tus datos académicos de forma dinámica.</p>
+            </div>
+
+            <div class="export-panel">
+                <button class="btn btn-primary" onclick="exportChart('png')">
+                    <i class="fas fa-download"></i> Exportar PNG
+                </button>
+                <button class="btn btn-primary" onclick="shareResults()">
+                    <i class="fas fa-share"></i> Compartir
+                </button>
+            </div>
+
+            <div class="chart-container">
+                <h2 class="chart-title">
+                    <i class="fas fa-chart-bar"></i> 
+                    <span id="mainChartTitle">Rendimiento por Materia</span>
+                </h2>
+                <div class="chart-wrapper large">
+                    <canvas id="mainChart"></canvas>
+                    <div id="mainChartLoading" class="loading-overlay" style="display: none;">
+                        <div class="spinner"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="chart-container">
+                    <h2 class="chart-title">
+                        <i class="fas fa-chart-area"></i> Distribución de Notas
+                    </h2>
+                    <div class="chart-wrapper">
+                        <canvas id="distributionChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <h2 class="chart-title">
+                        <i class="fas fa-chart-pie"></i> Categorías de Rendimiento
+                    </h2>
+                    <div class="chart-wrapper">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-3">
+                <div class="chart-container">
+                    <h2 class="chart-title">
+                        <i class="fas fa-trophy"></i> Top 10 Mejores
+                    </h2>
+                    <div class="subject-list" id="topSubjects"></div>
+                </div>
+
+                <div class="chart-container">
+                    <h2 class="chart-title">
+                        <i class="fas fa-chart-line"></i> Tendencia de Notas
+                    </h2>
+                    <div class="chart-wrapper">
+                        <canvas id="trendChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <h2 class="chart-title">
+                        <i class="fas fa-exclamation-triangle"></i> Áreas de Mejora
+                    </h2>
+                    <div class="subject-list" id="improvementAreas"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><i class="fas fa-code"></i> Dashboard dinámico generado con Chart.js • Datos procesados en tiempo real</p>
+        </div>
+    </div>
+
+    <script>
+        // Datos académicos embebidos directamente en el HTML
+        const academicDataRaw = {
+    "ramos_con_detalles": [
+        {
+            "nombre": "GESTIÓN INFORMÁTICA I",
+            "nota_final": 7.0,
+            "id_curso": "01003116",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 7.0
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2025"
+        },
+        {
+            "nombre": "HACIA UNA NUEVA CULTURA EMPRESARIAL",
+            "nota_final": 6.7,
+            "id_curso": "01005356",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "40%",
+                    "nota": 6.3
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2025"
+        },
+        {
+            "nombre": "INGENIERÍA DE SOFTWARE II",
+            "nota_final": 6.8,
+            "id_curso": "01003118",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 6.7
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 6.4
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 7.0
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2025"
+        },
+        {
+            "nombre": "FORM. Y EVAL. DE PROYECTOS INFORMÁTICOS",
+            "nota_final": 6.6,
+            "id_curso": "01003115",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 5.5
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "35%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "40%",
+                    "nota": 7.0
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2025"
+        },
+        {
+            "nombre": "CALIDAD Y PRODUCTIVIDAD DE SOFTWARE",
+            "nota_final": 6.9,
+            "id_curso": "01003117",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 6.5
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2025"
+        },
+        {
+            "nombre": "SISTEMAS DISTRIBUIDOS",
+            "nota_final": 6.8,
+            "id_curso": "01003119",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 6.4
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "40%",
+                    "nota": 7.0
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2025"
+        },
+        {
+            "nombre": "MODULO INTEGRADOR DE LICENCIATURA (PRACT",
+            "nota_final": 6.8,
+            "id_curso": "01003110",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 6.2
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "40%",
+                    "nota": 7.0
+                }
+            ],
+            "semestre": "Semestre 2 (Pre) 2024"
+        },
+        {
+            "nombre": "REDES AVANZADAS",
+            "nota_final": 7.0,
+            "id_curso": "01003114",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "45%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "55%",
+                    "nota": 7.0
+                }
+            ],
+            "semestre": "Semestre 2 (Pre) 2024"
+        },
+        {
+            "nombre": "INTELIGENCIA ARTIFICIAL",
+            "nota_final": 5.2,
+            "id_curso": "01003112",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "10%",
+                    "nota": 5.9
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "10%",
+                    "nota": 5.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 4.5
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 6.3
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 4.5
+                }
+            ],
+            "semestre": "Semestre 2 (Pre) 2024"
+        },
+        {
+            "nombre": "CONTABILIDAD Y FINANZAS",
+            "nota_final": 6.5,
+            "id_curso": "01003111",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 4.7
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 7.0
+                }
+            ],
+            "semestre": "Semestre 2 (Pre) 2024"
+        },
+        {
+            "nombre": "INGENIERIA DE SOFTWARE I",
+            "nota_final": 7.0,
+            "id_curso": "01003113",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "10%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "10%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 7.0
+                }
+            ],
+            "semestre": "Semestre 2 (Pre) 2024"
+        },
+        {
+            "nombre": "INTRODUCCIÓN A LA RESPONSABILIDAD SOCIAL",
+            "nota_final": 6.8,
+            "id_curso": "01005354",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 6.6
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 6.6
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "40%",
+                    "nota": 7.0
+                }
+            ],
+            "semestre": "Semestre 2 (Pre) 2024"
+        },
+        {
+            "nombre": "ECONOMIA",
+            "nota_final": 6.4,
+            "id_curso": "01003106",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 6.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 5.6
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 7.0
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2024"
+        },
+        {
+            "nombre": "DISEÑO Y ANALISIS DE ALGORITMOS",
+            "nota_final": 6.3,
+            "id_curso": "01003107",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 6.5
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "70%",
+                    "nota": 6.2
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2024"
+        },
+        {
+            "nombre": "COMUNICACIÓN DE DATOS Y REDES",
+            "nota_final": 5.5,
+            "id_curso": "01003109",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "15%",
+                    "nota": 5.5
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "15%",
+                    "nota": 5.5
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 5.5
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 5.5
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 5.5
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2024"
+        },
+        {
+            "nombre": "SISTEMAS DE INFORMACIÓN",
+            "nota_final": 6.9,
+            "id_curso": "01003108",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 6.5
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "40%",
+                    "nota": 7.0
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2024"
+        },
+        {
+            "nombre": "METODOLOGIA DE LA INVESTIGACIÓN",
+            "nota_final": 6.9,
+            "id_curso": "01003105",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 6.7
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "40%",
+                    "nota": 6.9
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2024"
+        },
+        {
+            "nombre": "BASE DE DATOS",
+            "nota_final": 5.4,
+            "id_curso": "01003103",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 4.4
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 4.6
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "40%",
+                    "nota": 6.8
+                }
+            ],
+            "semestre": "Semestre 2 (Pre) 2023"
+        },
+        {
+            "nombre": "COMPUTACIÓN NUMÉRICA",
+            "nota_final": 4.9,
+            "id_curso": "01003100",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "15%",
+                    "nota": 4.9
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "15%",
+                    "nota": 4.9
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 4.9
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 4.9
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 5.0
+                }
+            ],
+            "semestre": "Semestre 2 (Pre) 2023"
+        },
+        {
+            "nombre": "INVESTIGACIÓN DE OPERACIONES",
+            "nota_final": 6.0,
+            "id_curso": "01003101",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "15%",
+                    "nota": 6.8
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "15%",
+                    "nota": 3.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 5.1
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 7.0
+                }
+            ],
+            "semestre": "Semestre 2 (Pre) 2023"
+        },
+        {
+            "nombre": "TEORÍA DE LA COMPUTACION",
+            "nota_final": 6.4,
+            "id_curso": "01003102",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 6.2
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 6.4
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 6.6
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 6.4
+                }
+            ],
+            "semestre": "Semestre 2 (Pre) 2023"
+        },
+        {
+            "nombre": "ETICA CRISTIANA",
+            "nota_final": 6.8,
+            "id_curso": "01005880",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 6.9
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 6.5
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "40%",
+                    "nota": 7.0
+                }
+            ],
+            "semestre": "Semestre 2 (Pre) 2023"
+        },
+        {
+            "nombre": "SISTEMAS OPERATIVOS",
+            "nota_final": 5.6,
+            "id_curso": "01003104",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 6.4
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "35%",
+                    "nota": 6.5
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "40%",
+                    "nota": 4.2
+                }
+            ],
+            "semestre": "Semestre 2 (Pre) 2023"
+        },
+        {
+            "nombre": "INFERENCIA ESTADÍSTICA",
+            "nota_final": 5.8,
+            "id_curso": "01003096",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "15%",
+                    "nota": 6.8
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "15%",
+                    "nota": 5.3
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 5.6
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 5.6
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 5.8
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2023"
+        },
+        {
+            "nombre": "TALLER DE CIRCUITOS DIGITALES",
+            "nota_final": 6.9,
+            "id_curso": "01003099",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 6.8
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 6.9
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "40%",
+                    "nota": 6.9
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2023"
+        },
+        {
+            "nombre": "FISICA III",
+            "nota_final": 7.0,
+            "id_curso": "01003095",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 7.0
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2023"
+        },
+        {
+            "nombre": "MODELAMIENTO DE DATOS",
+            "nota_final": 5.4,
+            "id_curso": "01003098",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 3.8
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "40%",
+                    "nota": 5.4
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "40%",
+                    "nota": 6.3
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2023"
+        },
+        {
+            "nombre": "INTRODUCCIÓN A LA FE",
+            "nota_final": 7.0,
+            "id_curso": "01005831",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 7.0
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2023"
+        },
+        {
+            "nombre": "ESTRUCTURAS DISCRETAS",
+            "nota_final": 5.6,
+            "id_curso": "01003097",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "15%",
+                    "nota": 5.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "15%",
+                    "nota": 5.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 6.3
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 5.5
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 5.8
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2023"
+        },
+        {
+            "nombre": "FISICA II",
+            "nota_final": 5.4,
+            "id_curso": "01003089",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 5.4
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "35%",
+                    "nota": 4.5
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "35%",
+                    "nota": 6.4
+                }
+            ],
+            "semestre": "Semestre 2 (Pre) 2022"
+        },
+        {
+            "nombre": "LÓGICA PARA CIENCIA DE LA COMPUTACIÓN",
+            "nota_final": 6.7,
+            "id_curso": "01003092",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 6.1
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "35%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "35%",
+                    "nota": 7.0
+                }
+            ],
+            "semestre": "Semestre 2 (Pre) 2022"
+        },
+        {
+            "nombre": "MODULO INTEGRADOR CIENCIAS BÁSICAS",
+            "nota_final": 6.7,
+            "id_curso": "01003094",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "40%",
+                    "nota": 6.6
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "60%",
+                    "nota": 6.8
+                }
+            ],
+            "semestre": "Semestre 2 (Pre) 2022"
+        },
+        {
+            "nombre": "ECUACIONES DIFERENCIALES",
+            "nota_final": 4.9,
+            "id_curso": "01003090",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "15%",
+                    "nota": 4.3
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "15%",
+                    "nota": 6.4
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 5.4
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 3.7
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 4.9
+                }
+            ],
+            "semestre": "Semestre 2 (Pre) 2022"
+        },
+        {
+            "nombre": "ARQUITECTURA DE COMPUTADORES",
+            "nota_final": 6.1,
+            "id_curso": "01003093",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "15%",
+                    "nota": 2.9
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 6.5
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 6.4
+                }
+            ],
+            "semestre": "Semestre 2 (Pre) 2022"
+        },
+        {
+            "nombre": "PROGRAMACIÓN AVANZADA",
+            "nota_final": 4.5,
+            "id_curso": "01003091",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 3.2
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 1.1
+                }
+            ],
+            "semestre": "Semestre 2 (Pre) 2022"
+        },
+        {
+            "nombre": "INGLES III",
+            "nota_final": 5.8,
+            "id_curso": "01005809",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "50%",
+                    "nota": 5.3
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "50%",
+                    "nota": 6.3
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2022"
+        },
+        {
+            "nombre": "EXPRESIÓN ORAL EN INGENIERIA",
+            "nota_final": 6.2,
+            "id_curso": "01003087",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 6.8
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 6.5
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 5.1
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 6.5
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2022"
+        },
+        {
+            "nombre": "FISICA I",
+            "nota_final": 4.5,
+            "id_curso": "01003084",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "15%",
+                    "nota": 6.2
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "15%",
+                    "nota": 6.3
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 2.5
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 4.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 4.5
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2022"
+        },
+        {
+            "nombre": "CALCULO III",
+            "nota_final": 4.3,
+            "id_curso": "01003085",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 2.7
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 4.6
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 5.2
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 4.3
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2022"
+        },
+        {
+            "nombre": "CIRCUITOS DIGITALES",
+            "nota_final": 5.9,
+            "id_curso": "01003088",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 5.4
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 5.2
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 5.8
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2022"
+        },
+        {
+            "nombre": "ESTRUCTURAS DE DATOS",
+            "nota_final": 5.6,
+            "id_curso": "01003086",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 3.2
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "40%",
+                    "nota": 6.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "40%",
+                    "nota": 6.4
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2022"
+        },
+        {
+            "nombre": "INGLÉS II",
+            "nota_final": 6.6,
+            "id_curso": "01005759",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 6.6
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 6.6
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "40%",
+                    "nota": 6.6
+                }
+            ],
+            "semestre": "Semestre 2 (Pre) 2021"
+        },
+        {
+            "nombre": "COMPRENSIÓN LECTORA Y PROD. DE TEXTOS",
+            "nota_final": 6.1,
+            "id_curso": "01003083",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 6.5
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 5.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 5.9
+                }
+            ],
+            "semestre": "Semestre 2 (Pre) 2021"
+        },
+        {
+            "nombre": "CALCULO II",
+            "nota_final": 4.6,
+            "id_curso": "01003081",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 4.1
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 3.4
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 5.7
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 4.6
+                }
+            ],
+            "semestre": "Semestre 2 (Pre) 2021"
+        },
+        {
+            "nombre": "ALGEBRA II",
+            "nota_final": 4.0,
+            "id_curso": "01003080",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "15%",
+                    "nota": 4.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "15%",
+                    "nota": 4.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 4.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 4.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 4.0
+                }
+            ],
+            "semestre": "Semestre 2 (Pre) 2021"
+        },
+        {
+            "nombre": "PROGRAMACIÓN",
+            "nota_final": 6.5,
+            "id_curso": "01003082",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 6.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "40%",
+                    "nota": 6.3
+                }
+            ],
+            "semestre": "Semestre 2 (Pre) 2021"
+        },
+    ]
+}
+
+
+        // Variables globales
+        let academicData = [];
+        let filteredData = [];
+        const charts = {};
+        let isDarkMode = false;
+
+        // Configuración de Chart.js
+        Chart.defaults.font.family = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
+        Chart.defaults.plugins.legend.labels.usePointStyle = true;
+
+        // Inicializar cuando se carga la página
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAcademicData();
+            initializeCharts();
+            updateStats();
+            setupEventListeners();
+        });
+
+        // Cargar datos académicos
+        function loadAcademicData() {
+            try {
+                academicData = academicDataRaw.ramos_con_detalles
+                    .filter(subject => !subject.error)
+                    .map(subject => ({
+                        nombre: subject.nombre,
+                        nota_final: subject.nota_final,
+                        id_curso: subject.id_curso,
+                        componentes: subject.componentes,
+                        categoria: categorizeGrade(subject.nota_final)
+                    }));
+
+                filteredData = [...academicData];
+                console.log('Datos cargados:', academicData.length, 'materias');
+            } catch (error) {
+                console.error('Error cargando datos:', error);
+            }
+        }
+
+        // Categorizar notas
+        function categorizeGrade(grade) {
+            if (grade >= 6.5) return 'excellent';
+            if (grade >= 6.0) return 'good';
+            if (grade >= 5.5) return 'regular';
+            return 'poor';
+        }
+
+        // Inicializar gráficos
+        function initializeCharts() {
+            createMainChart();
+            createDistributionChart();
+            createCategoryChart();
+            createTrendChart();
+            updateSubjectLists();
+        }
+
+        // Gráfico principal
+        function createMainChart() {
+            const ctx = document.getElementById('mainChart').getContext('2d');
+
+            if (charts.main) {
+                charts.main.destroy();
+            }
+
+            const chartType = document.getElementById('chartType').value;
+            const data = prepareMainChartData(chartType);
+
+            charts.main = new Chart(ctx, {
+                type: chartType,
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: chartType === 'radar' || chartType === 'polarArea',
+                            position: 'top'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: function(context) {
+                                    return filteredData[context[0].dataIndex]?.nombre || context[0].label;
+                                },
+                                label: function(context) {
+                                    return `Nota: ${context.parsed.y || context.parsed.r || context.parsed}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: chartType === 'radar' || chartType === 'polarArea' ? {} : {
+                        y: {
+                            beginAtZero: true,
+                            max: 7,
+                            grid: {
+                                color: 'rgba(0,0,0,0.1)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 1500,
+                        easing: 'easeInOutQuart'
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    },
+                    onHover: function(event, activeElements) {
+                        event.native.target.style.cursor = activeElements.length > 0 ? 'pointer' : 'default';
+                    },
+                    onClick: function(event, activeElements) {
+                        if (activeElements.length > 0) {
+                            const index = activeElements[0].index;
+                            const subject = filteredData[index];
+                            showSubjectDetails(subject);
+                        }
+                    }
+                }
+            });
+        }
+
+        // Preparar datos para el gráfico principal
+        function prepareMainChartData(chartType) {
+            const colors = generateColors(filteredData.length);
+
+            if (chartType === 'radar') {
+                return {
+                    labels: filteredData.slice(0, 10).map(s => s.nombre.substring(0, 15) + '...'),
+                    datasets: [{
+                        label: 'Notas',
+                        data: filteredData.slice(0, 10).map(s => s.nota_final),
+                        backgroundColor: 'rgba(102, 126, 234, 0.2)',
+                        borderColor: 'rgba(102, 126, 234, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(102, 126, 234, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(102, 126, 234, 1)'
+                    }]
+                };
+            }
+
+            if (chartType === 'polarArea') {
+                return {
+                    labels: filteredData.slice(0, 8).map(s => s.nombre.substring(0, 15) + '...'),
+                    datasets: [{
+                        data: filteredData.slice(0, 8).map(s => s.nota_final),
+                        backgroundColor: colors.slice(0, 8),
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                };
+            }
+
+            return {
+                labels: filteredData.map(s => s.nombre.length > 20 ? s.nombre.substring(0, 20) + '...' : s.nombre),
+                datasets: [{
+                    label: 'Nota Final',
+                    data: filteredData.map(s => s.nota_final),
+                    backgroundColor: colors,
+                    borderColor: colors.map(color => color.replace('0.8', '1')),
+                    borderWidth: 2,
+                    borderRadius: chartType === 'bar' ? 8 : 0,
+                    tension: chartType === 'line' ? 0.4 : 0
+                }]
+            };
+        }
+
+        // Gráfico de distribución
+        function createDistributionChart() {
+            const ctx = document.getElementById('distributionChart').getContext('2d');
+
+            if (charts.distribution) {
+                charts.distribution.destroy();
+            }
+
+            const grades = filteredData.map(s => s.nota_final);
+            const bins = createHistogramBins(grades, 10);
+
+            charts.distribution = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: bins.labels,
+                    datasets: [{
+                        label: 'Frecuencia',
+                        data: bins.data,
+                        backgroundColor: 'rgba(52, 152, 219, 0.8)',
+                        borderColor: 'rgba(52, 152, 219, 1)',
+                        borderWidth: 2,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `Materias: ${context.parsed.y}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 1200,
+                        easing: 'easeOutBounce'
+                    }
+                }
+            });
+        }
+
+        // Gráfico de categorías
+        function createCategoryChart() {
+            const ctx = document.getElementById('categoryChart').getContext('2d');
+
+            if (charts.category) {
+                charts.category.destroy();
+            }
+
+            const categories = {
+                excellent: { label: 'Excelente (6.5-7.0)', color: '#2ecc71', count: 0 },
+                good: { label: 'Bueno (6.0-6.4)', color: '#3498db', count: 0 },
+                regular: { label: 'Regular (5.5-5.9)', color: '#f39c12', count: 0 },
+                poor: { label: 'Deficiente (<5.5)', color: '#e74c3c', count: 0 }
+            };
+
+            filteredData.forEach(subject => {
+                categories[subject.categoria].count++;
+            });
+
+            charts.category = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.values(categories).map(cat => cat.label),
+                    datasets: [{
+                        data: Object.values(categories).map(cat => cat.count),
+                        backgroundColor: Object.values(categories).map(cat => cat.color),
+                        borderWidth: 3,
+                        borderColor: '#fff',
+                        hoverBorderWidth: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = ((context.parsed / total) * 100).toFixed(1);
+                                    return `${context.label}: ${context.parsed} (${percentage}%)`;
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        animateRotate: true,
+                        duration: 2000
+                    },
+                    onClick: function(event, activeElements) {
+                        if (activeElements.length > 0) {
+                            const index = activeElements[0].index;
+                            const categoryKeys = Object.keys(categories);
+                            const selectedCategory = categoryKeys[index];
+                            highlightCategory(selectedCategory);
+                        }
+                    }
+                }
+            });
+        }
+
+        // Gráfico de tendencia
+        function createTrendChart() {
+            const ctx = document.getElementById('trendChart').getContext('2d');
+
+            if (charts.trend) {
+                charts.trend.destroy();
+            }
+
+            const sortedData = [...filteredData].sort((a, b) => a.nota_final - b.nota_final);
+            const movingAverage = calculateMovingAverage(sortedData.map(s => s.nota_final), 5);
+
+            charts.trend = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: sortedData.map((_, index) => `Materia ${index + 1}`),
+                    datasets: [{
+                        label: 'Notas Ordenadas',
+                        data: sortedData.map(s => s.nota_final),
+                        borderColor: 'rgba(102, 126, 234, 1)',
+                        backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    }, {
+                        label: 'Tendencia (Media Móvil)',
+                        data: movingAverage,
+                        borderColor: 'rgba(231, 76, 60, 1)',
+                        backgroundColor: 'transparent',
+                        borderWidth: 3,
+                        borderDash: [5, 5],
+                        pointRadius: 0,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 7
+                        }
+                    },
+                    animation: {
+                        duration: 1800,
+                        easing: 'easeInOutCubic'
+                    }
+                }
+            });
+        }
+
+        // Actualizar estadísticas
+        function updateStats() {
+            const total = filteredData.length;
+            const grades = filteredData.map(s => s.nota_final);
+            const avg = grades.reduce((a, b) => a + b, 0) / total;
+            const max = Math.max(...grades);
+            const min = Math.min(...grades);
+            const passed = filteredData.filter(s => s.nota_final >= 4.0).length;
+            const excellent = filteredData.filter(s => s.categoria === 'excellent').length;
+
+            animateNumber('totalSubjects', total);
+            animateNumber('avgGrade', avg, 1);
+            animateNumber('maxGrade', max, 1);
+            animateNumber('minGrade', min, 1);
+            animateNumber('passedSubjects', passed);
+            animateNumber('excellentSubjects', excellent);
+        }
+
+        // Animar números
+        function animateNumber(elementId, targetValue, decimals = 0) {
+            const element = document.getElementById(elementId);
+            const startValue = 0;
+            const duration = 2000;
+            const startTime = performance.now();
+
+            function updateNumber(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                const currentValue = startValue + (targetValue - startValue) * easeOutQuart;
+
+                element.textContent = decimals > 0 ? currentValue.toFixed(decimals) : Math.floor(currentValue);
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateNumber);
+                }
+            }
+
+            requestAnimationFrame(updateNumber);
+        }
+
+        // Actualizar listas de materias
+        function updateSubjectLists() {
+            updateTopSubjects();
+            updateImprovementAreas();
+        }
+
+        // Top materias
+        function updateTopSubjects() {
+            const topSubjects = [...filteredData].sort((a, b) => b.nota_final - a.nota_final).slice(0, 10);
+
+            const container = document.getElementById('topSubjects');
+            container.innerHTML = topSubjects.map((subject, index) => `
+                <div class="subject-item" onclick="showSubjectDetails(${JSON.stringify(subject).replace(/"/g, '&quot;')})">
+                    <span class="subject-name">${index + 1}. ${subject.nombre}</span>
+                    <span class="subject-grade grade-${subject.categoria}">${subject.nota_final.toFixed(1)}</span>
+                </div>
+            `).join('');
+        }
+
+        // Áreas de mejora
+        function updateImprovementAreas() {
+            const improvementAreas = [...filteredData].sort((a, b) => a.nota_final - b.nota_final).slice(0, 10);
+
+            const container = document.getElementById('improvementAreas');
+            container.innerHTML = improvementAreas.map((subject, index) => `
+                <div class="subject-item" onclick="showSubjectDetails(${JSON.stringify(subject).replace(/"/g, '&quot;')})">
+                    <span class="subject-name">${index + 1}. ${subject.nombre}</span>
+                    <span class="subject-grade grade-${subject.categoria}">${subject.nota_final.toFixed(1)}</span>
+                </div>
+            `).join('');
+        }
+
+        // Aplicar filtros
+        function applyFilters() {
+            const searchTerm = document.getElementById('searchSubject').value.toLowerCase();
+            const gradeFilter = document.getElementById('gradeFilter').value;
+            const sortBy = document.getElementById('sortBy').value;
+
+            filteredData = academicData.filter(subject => {
+                const matchesSearch = subject.nombre.toLowerCase().includes(searchTerm);
+                const matchesGrade = gradeFilter === 'all' || subject.categoria === gradeFilter;
+                return matchesSearch && matchesGrade;
+            });
+
+            // Ordenar
+            switch (sortBy) {
+                case 'name':
+                    filteredData.sort((a, b) => a.nombre.localeCompare(b.nombre));
+                    break;
+                case 'grade-desc':
+                    filteredData.sort((a, b) => b.nota_final - a.nota_final);
+                    break;
+                case 'grade-asc':
+                    filteredData.sort((a, b) => a.nota_final - b.nota_final);
+                    break;
+            }
+
+            updateAllCharts();
+            updateStats();
+            updateSubjectLists();
+        }
+
+        // Filtrar materias por búsqueda
+        function filterSubjects() {
+            applyFilters();
+        }
+
+        // Resetear filtros
+        function resetFilters() {
+            document.getElementById('searchSubject').value = '';
+            document.getElementById('gradeFilter').value = 'all';
+            document.getElementById('sortBy').value = 'name';
+            document.getElementById('chartType').value = 'bar';
+
+            filteredData = [...academicData];
+            updateAllCharts();
+            updateStats();
+            updateSubjectLists();
+        }
+
+        // Actualizar gráfico principal
+        function updateMainChart() {
+            const chartType = document.getElementById('chartType').value;
+            const titles = {
+                bar: 'Rendimiento por Materia',
+                line: 'Tendencia de Notas',
+                radar: 'Análisis Radar de Rendimiento',
+                polarArea: 'Distribución Polar de Notas'
+            };
+
+            document.getElementById('mainChartTitle').textContent = titles[chartType];
+            createMainChart();
+        }
+
+        // Actualizar todos los gráficos
+        function updateAllCharts() {
+            showLoading('mainChartLoading');
+
+            setTimeout(() => {
+                createMainChart();
+                createDistributionChart();
+                createCategoryChart();
+                createTrendChart();
+                hideLoading('mainChartLoading');
+            }, 500);
+        }
+
+        // Resaltar categoría
+        function highlightCategory(category) {
+            if (category === 'all') {
+                document.getElementById('gradeFilter').value = 'all';
+            } else {
+                document.getElementById('gradeFilter').value = category;
+            }
+            applyFilters();
+        }
+
+        // Mostrar materias top
+        function showTopSubjects() {
+            document.getElementById('sortBy').value = 'grade-desc';
+            applyFilters();
+        }
+
+        // Mostrar detalles de materia
+        function showSubjectDetails(subject) {
+            const details = `
+📚 Materia: ${subject.nombre}
+📊 Nota Final: ${subject.nota_final}
+🏷️ Código: ${subject.id_curso}
+📈 Categoría: ${getCategoryLabel(subject.categoria)}
+
+${subject.componentes.length > 0 ? 
+    '📋 Componentes:\n' + subject.componentes.map(comp => `• ${comp.nombre}: ${comp.nota} (${comp.porcentaje || 'N/A'})`).join('\n') 
+    : ''}
+            `;
+
+            alert(details);
+        }
+
+        // Obtener etiqueta de categoría
+        function getCategoryLabel(category) {
+            const labels = {
+                excellent: 'Excelente',
+                good: 'Bueno',
+                regular: 'Regular',
+                poor: 'Deficiente'
+            };
+            return labels[category] || category;
+        }
+
+        // Toggle tema oscuro
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('dark-mode');
+
+            const icon = document.querySelector('.theme-toggle i');
+            icon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
+
+            updateChartTheme();
+        }
+
+        // Actualizar tema de gráficos
+        function updateChartTheme() {
+            const textColor = isDarkMode ? '#ecf0f1' : '#2c3e50';
+            const gridColor = isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
+
+            Chart.defaults.color = textColor;
+            Chart.defaults.borderColor = gridColor;
+            Chart.defaults.backgroundColor = gridColor;
+
+            updateAllCharts();
+        }
+
+        // Exportar gráfico
+        function exportChart(format) {
+            if (format === 'png') {
+                const canvas = document.getElementById('mainChart');
+                const url = canvas.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.download = 'rendimiento-academico.png';
+                link.href = url;
+                link.click();
+            }
+        }
+
+        // Compartir resultados
+        function shareResults() {
+            const stats = {
+                total: filteredData.length,
+                promedio: (filteredData.reduce((sum, s) => sum + s.nota_final, 0) / filteredData.length).toFixed(2),
+                excelentes: filteredData.filter(s => s.categoria === 'excellent').length
+            };
+
+            const text = `🎓 Mi Rendimiento Académico:
+📊 ${stats.total} materias analizadas
+📈 Promedio: ${stats.promedio}
+🏆 ${stats.excelentes} materias con rendimiento excelente`;
+
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Mi Dashboard Académico',
+                    text: text
+                });
+            } else {
+                navigator.clipboard.writeText(text).then(() => {
+                    alert('Resultados copiados al portapapeles');
+                });
+            }
+        }
+
+        // Funciones auxiliares
+        function generateColors(count) {
+            const colors = [];
+            for (let i = 0; i < count; i++) {
+                const hue = (i * 137.508) % 360; // Golden angle
+                colors.push(`hsla(${hue}, 70%, 60%, 0.8)`);
+            }
+            return colors;
+        }
+
+        function createHistogramBins(data, binCount) {
+            const min = Math.min(...data);
+            const max = Math.max(...data);
+            const binWidth = (max - min) / binCount;
+
+            const bins = Array(binCount).fill(0);
+            const labels = [];
+
+            for (let i = 0; i < binCount; i++) {
+                const binStart = min + i * binWidth;
+                const binEnd = binStart + binWidth;
+                labels.push(`${binStart.toFixed(1)}-${binEnd.toFixed(1)}`);
+
+                bins[i] = data.filter(value => value >= binStart && value < binEnd).length;
+            }
+
+            return { labels, data: bins };
+        }
+
+        function calculateMovingAverage(data, windowSize) {
+            const result = [];
+            for (let i = 0; i < data.length; i++) {
+                const start = Math.max(0, i - Math.floor(windowSize / 2));
+                const end = Math.min(data.length, i + Math.ceil(windowSize / 2));
+                const window = data.slice(start, end);
+                const average = window.reduce((sum, val) => sum + val, 0) / window.length;
+                result.push(average);
+            }
+            return result;
+        }
+
+        function showLoading(elementId) {
+            document.getElementById(elementId).style.display = 'flex';
+        }
+
+        function hideLoading(elementId) {
+            document.getElementById(elementId).style.display = 'none';
+        }
+
+        function setupEventListeners() {
+            // Agregar listeners para eventos de teclado
+            document.getElementById('searchSubject').addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') {
+                    applyFilters();
+                }
+            });
+
+            // Listener para cambios en tiempo real
+            document.getElementById('searchSubject').addEventListener('input', debounce(filterSubjects, 300));
+        }
+
+        // Debounce function para optimizar búsquedas
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+    </script>
+</body>
+</html>
