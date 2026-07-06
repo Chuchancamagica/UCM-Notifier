@@ -554,6 +554,7 @@
         </div>
     </div>
 
+    <script src="ramos_con_detalles.js"></script>
     <script>
         // Variables globales
         let academicData = [];
@@ -573,16 +574,26 @@
             setupEventListeners();
         });
 
-        // Cargar datos académicos dinámicamente desde ramos_con_detalles.json
+        // Cargar datos académicos: primero desde window.ramosData (cargado por el <script> previo),
+        // y si no existe, intentar fetch al JSON (modo servidor HTTP).
         async function loadAcademicData() {
             try {
-                const cacheBuster = '?t=' + Date.now();
-                const response = await fetch('ramos_con_detalles.json' + cacheBuster);
-                if (!response.ok) {
-                    throw new Error('HTTP ' + response.status + ' al cargar ramos_con_detalles.json');
+                let rawData = null;
+
+                if (window.ramosData && Array.isArray(window.ramosData.ramos_con_detalles)) {
+                    rawData = window.ramosData;
+                    console.log('Datos cargados desde ramos_con_detalles.js (modo local)');
+                } else {
+                    const cacheBuster = '?t=' + Date.now();
+                    const response = await fetch('ramos_con_detalles.json' + cacheBuster);
+                    if (!response.ok) {
+                        throw new Error('HTTP ' + response.status + ' al cargar ramos_con_detalles.json');
+                    }
+                    rawData = await response.json();
+                    console.log('Datos cargados desde ramos_con_detalles.json (fetch)');
                 }
-                const data = await response.json();
-                const ramos = Array.isArray(data.ramos_con_detalles) ? data.ramos_con_detalles : [];
+
+                const ramos = Array.isArray(rawData.ramos_con_detalles) ? rawData.ramos_con_detalles : [];
 
                 academicData = ramos
                     .filter(subject => !subject.error && subject.nota_final != null)

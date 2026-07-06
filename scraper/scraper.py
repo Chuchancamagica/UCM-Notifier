@@ -134,6 +134,15 @@ def save_new_results(results, old_results_map, file_path=JSON_PATH):
         json.dump(json_output, f, indent=4, ensure_ascii=False)
     print(f"\n✅ Resultados guardados en {file_path}: {len(final_results)} ramos procesados.")
 
+    js_path = os.path.join(os.path.dirname(file_path), "ramos_con_detalles.js")
+    js_content = (
+        "/* Archivo generado automáticamente por el scraper. No editar a mano. */\n"
+        "window.ramosData = " + json.dumps(json_output, ensure_ascii=False) + ";\n"
+    )
+    with open(js_path, "w", encoding="utf-8") as f:
+        f.write(js_content)
+    print(f"✅ Versión JS para dashboard (file://) guardada en {js_path}.")
+
 def get_latest_semestre(course_rows):
     """Obtiene el semestre más reciente basado en el año y el nombre del semestre."""
     semesters = []
