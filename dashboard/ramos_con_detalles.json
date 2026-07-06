@@ -1,159 +1,6 @@
 {
     "ramos_con_detalles": [
         {
-            "nombre": "SISTEMAS DISTRIBUIDOS",
-            "nota_final": null,
-            "id_curso": "01003119",
-            "componentes": [
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": null
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": null
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "40%",
-                    "nota": null
-                }
-            ],
-            "semestre": "Semestre 1 (Pre) 2026"
-        },
-        {
-            "nombre": "FORM. Y EVAL. DE PROYECTOS INFORMÁTICOS",
-            "nota_final": null,
-            "id_curso": "01003115",
-            "componentes": [
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "25%",
-                    "nota": 3.6
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "35%",
-                    "nota": null
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "40%",
-                    "nota": null
-                }
-            ],
-            "semestre": "Semestre 1 (Pre) 2026"
-        },
-        {
-            "nombre": "INGENIERÍA DE SOFTWARE II",
-            "nota_final": null,
-            "id_curso": "01003118",
-            "componentes": [
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "20%",
-                    "nota": null
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "20%",
-                    "nota": null
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": null
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": null
-                }
-            ],
-            "semestre": "Semestre 1 (Pre) 2026"
-        },
-        {
-            "nombre": "CALIDAD Y PRODUCTIVIDAD DE SOFTWARE",
-            "nota_final": null,
-            "id_curso": "01003117",
-            "componentes": [
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "20%",
-                    "nota": 5.0
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "25%",
-                    "nota": null
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "25%",
-                    "nota": null
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": null
-                }
-            ],
-            "semestre": "Semestre 1 (Pre) 2026"
-        },
-        {
-            "nombre": "GESTIÓN INFORMÁTICA I",
-            "nota_final": null,
-            "id_curso": "01003116",
-            "componentes": [
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "20%",
-                    "nota": 6.8
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "20%",
-                    "nota": 5.2
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": null
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": null
-                }
-            ],
-            "semestre": "Semestre 1 (Pre) 2026"
-        },
-        {
-            "nombre": "IMPLEMENTACION DE LA R.S.E. Y NUEVOS DES",
-            "nota_final": null,
-            "id_curso": "01005358",
-            "componentes": [
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": 7.0
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": 5.2
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "40%",
-                    "nota": null
-                }
-            ],
-            "semestre": "Semestre 1 (Pre) 2026"
-        },
-        {
             "nombre": "HACIA UNA NUEVA CULTURA EMPRESARIAL",
             "nota_final": 5.9,
             "id_curso": "01005356",
@@ -386,19 +233,11 @@
             "semestre": "Semestre 1 (Pre) 2025"
         },
         {
-            "nombre": "INFERENCIA ESTADÍSTICA",
+            "nombre": "CALCULO I",
             "nota_final": null,
             "id_curso": "N/A",
             "componentes": [],
-            "semestre": "Semestre 1 (Pre) 2025",
-            "error": "Message: \nStacktrace:\n#0 0x55fedd4083da <unknown>\n#1 0x55fedcdea139 <unknown>\n#2 0x55fedce3e884 <unknown>\n#3 0x55fedce3ead1 <unknown>\n#4 0x55fedce89974 <unknown>\n#5 0x55fedce86b5c <unknown>\n#6 0x55fedce31e4f <unknown>\n#7 0x55fedce32c31 <unknown>\n#8 0x55fedd3ce9f7 <unknown>\n#9 0x55fedd3cd203 <unknown>\n#10 0x55fedd3b7f16 <unknown>\n#11 0x55fedd3cdd9a <unknown>\n#12 0x55fedd39feb0 <unknown>\n#13 0x55fedd3f4d58 <unknown>\n#14 0x55fedd3f4ef5 <unknown>\n#15 0x55fedd406f5e <unknown>\n#16 0x7fd13129caa4 <unknown>\n#17 0x7fd131329c6c <unknown>\n"
-        },
-        {
-            "nombre": "INTRODUCCIÓN A LA RESPONSABILIDAD SOCIAL",
-            "nota_final": null,
-            "id_curso": "N/A",
-            "componentes": [],
-            "semestre": "Semestre 1 (Pre) 2025",
+            "semestre": "Semestre 1 (Pre) 2021",
             "error": "Message: \nStacktrace:\n#0 0x55fedd4083da <unknown>\n#1 0x55fedcdea139 <unknown>\n#2 0x55fedce3e884 <unknown>\n#3 0x55fedce3ead1 <unknown>\n#4 0x55fedce89974 <unknown>\n#5 0x55fedce86b5c <unknown>\n#6 0x55fedce31e4f <unknown>\n#7 0x55fedce32c31 <unknown>\n#8 0x55fedd3ce9f7 <unknown>\n#9 0x55fedd3cd203 <unknown>\n#10 0x55fedd3b7f16 <unknown>\n#11 0x55fedd3cdd9a <unknown>\n#12 0x55fedd39feb0 <unknown>\n#13 0x55fedd3f4d58 <unknown>\n#14 0x55fedd3f4ef5 <unknown>\n#15 0x55fedd406f5e <unknown>\n#16 0x7fd13129caa4 <unknown>\n#17 0x7fd131329c6c <unknown>\n"
         },
         {
@@ -571,31 +410,31 @@
         },
         {
             "nombre": "CALCULO III",
-            "nota_final": 5.7,
+            "nota_final": 2.0,
             "id_curso": "01003085",
             "componentes": [
                 {
                     "nombre": "Parcial",
                     "porcentaje": "20%",
-                    "nota": 5.4
+                    "nota": 2.2
                 },
                 {
                     "nombre": "Parcial",
                     "porcentaje": "25%",
-                    "nota": 5.6
+                    "nota": 2.4
                 },
                 {
                     "nombre": "Parcial",
                     "porcentaje": "25%",
-                    "nota": 6.1
+                    "nota": 2.2
                 },
                 {
                     "nombre": "Parcial",
                     "porcentaje": "30%",
-                    "nota": 5.7
+                    "nota": 1.3
                 }
             ],
-            "semestre": "Semestre 1 (Pre) 2024"
+            "semestre": "Semestre 1 (Pre) 2023"
         },
         {
             "nombre": "COMUNICACIÓN DE DATOS Y REDES",
@@ -647,34 +486,6 @@
                 }
             ],
             "semestre": "Semestre 1 (Pre) 2024"
-        },
-        {
-            "nombre": "CALCULO III",
-            "nota_final": 1.6,
-            "id_curso": "01003085",
-            "componentes": [
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "20%",
-                    "nota": 1.5
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "25%",
-                    "nota": 2.8
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "25%",
-                    "nota": 1.0
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": 1.0
-                }
-            ],
-            "semestre": "Semestre 2 (Pre) 2023"
         },
         {
             "nombre": "SISTEMAS OPERATIVOS",
@@ -797,34 +608,6 @@
                     "nombre": "Parcial",
                     "porcentaje": "30%",
                     "nota": 6.0
-                }
-            ],
-            "semestre": "Semestre 1 (Pre) 2023"
-        },
-        {
-            "nombre": "CALCULO III",
-            "nota_final": 2.0,
-            "id_curso": "01003085",
-            "componentes": [
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "20%",
-                    "nota": 2.2
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "25%",
-                    "nota": 2.4
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "25%",
-                    "nota": 2.2
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": 1.3
                 }
             ],
             "semestre": "Semestre 1 (Pre) 2023"
@@ -1079,7 +862,7 @@
                     "nota": null
                 }
             ],
-            "semestre": "Semestre 2 (Pre) 2022"
+            "semestre": "Semestre 2 (Pre) 2021"
         },
         {
             "nombre": "ESTRUCTURAS DE DATOS",
@@ -1100,39 +883,6 @@
                     "nombre": "Parcial",
                     "porcentaje": "40%",
                     "nota": 5.8
-                }
-            ],
-            "semestre": "Semestre 1 (Pre) 2022"
-        },
-        {
-            "nombre": "ALGEBRA II",
-            "nota_final": null,
-            "id_curso": "01003080",
-            "componentes": [
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "15%",
-                    "nota": null
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "15%",
-                    "nota": null
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "20%",
-                    "nota": null
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "20%",
-                    "nota": null
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": null
                 }
             ],
             "semestre": "Semestre 1 (Pre) 2022"
@@ -1347,20 +1097,56 @@
             "semestre": "Semestre 2 (Pre) 2021"
         },
         {
-            "nombre": "ALGEBRA II",
+            "nombre": "SISTEMAS DISTRIBUIDOS",
             "nota_final": null,
-            "id_curso": "01003080",
+            "id_curso": "01003119",
             "componentes": [
                 {
                     "nombre": "Parcial",
-                    "porcentaje": "15%",
+                    "porcentaje": "30%",
                     "nota": null
                 },
                 {
                     "nombre": "Parcial",
-                    "porcentaje": "15%",
+                    "porcentaje": "30%",
                     "nota": null
                 },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "40%",
+                    "nota": null
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2026"
+        },
+        {
+            "nombre": "FORM. Y EVAL. DE PROYECTOS INFORMÁTICOS",
+            "nota_final": null,
+            "id_curso": "01003115",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 3.6
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "35%",
+                    "nota": 6.7
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "40%",
+                    "nota": null
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2026"
+        },
+        {
+            "nombre": "INGENIERÍA DE SOFTWARE II",
+            "nota_final": null,
+            "id_curso": "01003118",
+            "componentes": [
                 {
                     "nombre": "Parcial",
                     "porcentaje": "20%",
@@ -1375,49 +1161,93 @@
                     "nombre": "Parcial",
                     "porcentaje": "30%",
                     "nota": null
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": null
                 }
             ],
-            "semestre": "Semestre 2 (Pre) 2021"
+            "semestre": "Semestre 1 (Pre) 2026"
         },
         {
-            "nombre": "INTRODUCCIÓN A LA INGENIERIA",
+            "nombre": "CALIDAD Y PRODUCTIVIDAD DE SOFTWARE",
             "nota_final": null,
-            "id_curso": "N/A",
-            "componentes": [],
-            "semestre": "Semestre 1 (Pre) 2021",
-            "error": "Message: \nStacktrace:\n#0 0x55fedd4083da <unknown>\n#1 0x55fedcdea139 <unknown>\n#2 0x55fedce3e884 <unknown>\n#3 0x55fedce3ead1 <unknown>\n#4 0x55fedce89974 <unknown>\n#5 0x55fedce86b5c <unknown>\n#6 0x55fedce31e4f <unknown>\n#7 0x55fedce32c31 <unknown>\n#8 0x55fedd3ce9f7 <unknown>\n#9 0x55fedd3cd203 <unknown>\n#10 0x55fedd3b7f16 <unknown>\n#11 0x55fedd3cdd9a <unknown>\n#12 0x55fedd39feb0 <unknown>\n#13 0x55fedd3f4d58 <unknown>\n#14 0x55fedd3f4ef5 <unknown>\n#15 0x55fedd406f5e <unknown>\n#16 0x7fd13129caa4 <unknown>\n#17 0x7fd131329c6c <unknown>\n"
+            "id_curso": "01003117",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 5.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": null
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": null
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": null
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2026"
         },
         {
-            "nombre": "INTRODUCCIÓN A LA COMPUTACIÓN",
+            "nombre": "GESTIÓN INFORMÁTICA I",
             "nota_final": null,
-            "id_curso": "N/A",
-            "componentes": [],
-            "semestre": "Semestre 1 (Pre) 2021",
-            "error": "Message: \nStacktrace:\n#0 0x55fedd4083da <unknown>\n#1 0x55fedcdea139 <unknown>\n#2 0x55fedce3e884 <unknown>\n#3 0x55fedce3ead1 <unknown>\n#4 0x55fedce89974 <unknown>\n#5 0x55fedce86b5c <unknown>\n#6 0x55fedce31e4f <unknown>\n#7 0x55fedce32c31 <unknown>\n#8 0x55fedd3ce9f7 <unknown>\n#9 0x55fedd3cd203 <unknown>\n#10 0x55fedd3b7f16 <unknown>\n#11 0x55fedd3cdd9a <unknown>\n#12 0x55fedd39feb0 <unknown>\n#13 0x55fedd3f4d58 <unknown>\n#14 0x55fedd3f4ef5 <unknown>\n#15 0x55fedd406f5e <unknown>\n#16 0x7fd13129caa4 <unknown>\n#17 0x7fd131329c6c <unknown>\n"
+            "id_curso": "01003116",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 6.8
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 5.2
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": null
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": null
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2026"
         },
         {
-            "nombre": "INGLÉS I",
+            "nombre": "IMPLEMENTACION DE LA R.S.E. Y NUEVOS DES",
             "nota_final": null,
-            "id_curso": "N/A",
-            "componentes": [],
-            "semestre": "Semestre 1 (Pre) 2021",
-            "error": "Message: \nStacktrace:\n#0 0x55fedd4083da <unknown>\n#1 0x55fedcdea139 <unknown>\n#2 0x55fedce3e884 <unknown>\n#3 0x55fedce3ead1 <unknown>\n#4 0x55fedce89974 <unknown>\n#5 0x55fedce86b5c <unknown>\n#6 0x55fedce31e4f <unknown>\n#7 0x55fedce32c31 <unknown>\n#8 0x55fedd3ce9f7 <unknown>\n#9 0x55fedd3cd203 <unknown>\n#10 0x55fedd3b7f16 <unknown>\n#11 0x55fedd3cdd9a <unknown>\n#12 0x55fedd39feb0 <unknown>\n#13 0x55fedd3f4d58 <unknown>\n#14 0x55fedd3f4ef5 <unknown>\n#15 0x55fedd406f5e <unknown>\n#16 0x7fd13129caa4 <unknown>\n#17 0x7fd131329c6c <unknown>\n"
-        },
-        {
-            "nombre": "ALGEBRA I",
-            "nota_final": null,
-            "id_curso": "N/A",
-            "componentes": [],
-            "semestre": "Semestre 1 (Pre) 2021",
-            "error": "Message: \nStacktrace:\n#0 0x55fedd4083da <unknown>\n#1 0x55fedcdea139 <unknown>\n#2 0x55fedce3e884 <unknown>\n#3 0x55fedce3ead1 <unknown>\n#4 0x55fedce89974 <unknown>\n#5 0x55fedce86b5c <unknown>\n#6 0x55fedce31e4f <unknown>\n#7 0x55fedce32c31 <unknown>\n#8 0x55fedd3ce9f7 <unknown>\n#9 0x55fedd3cd203 <unknown>\n#10 0x55fedd3b7f16 <unknown>\n#11 0x55fedd3cdd9a <unknown>\n#12 0x55fedd39feb0 <unknown>\n#13 0x55fedd3f4d58 <unknown>\n#14 0x55fedd3f4ef5 <unknown>\n#15 0x55fedd406f5e <unknown>\n#16 0x7fd13129caa4 <unknown>\n#17 0x7fd131329c6c <unknown>\n"
-        },
-        {
-            "nombre": "CALCULO I",
-            "nota_final": null,
-            "id_curso": "N/A",
-            "componentes": [],
-            "semestre": "Semestre 1 (Pre) 2021",
-            "error": "Message: \nStacktrace:\n#0 0x55fedd4083da <unknown>\n#1 0x55fedcdea139 <unknown>\n#2 0x55fedce3e884 <unknown>\n#3 0x55fedce3ead1 <unknown>\n#4 0x55fedce89974 <unknown>\n#5 0x55fedce86b5c <unknown>\n#6 0x55fedce31e4f <unknown>\n#7 0x55fedce32c31 <unknown>\n#8 0x55fedd3ce9f7 <unknown>\n#9 0x55fedd3cd203 <unknown>\n#10 0x55fedd3b7f16 <unknown>\n#11 0x55fedd3cdd9a <unknown>\n#12 0x55fedd39feb0 <unknown>\n#13 0x55fedd3f4d58 <unknown>\n#14 0x55fedd3f4ef5 <unknown>\n#15 0x55fedd406f5e <unknown>\n#16 0x7fd13129caa4 <unknown>\n#17 0x7fd131329c6c <unknown>\n"
+            "id_curso": "01005358",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 5.2
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "40%",
+                    "nota": null
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2026"
         }
     ]
 }
