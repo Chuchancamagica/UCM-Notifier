@@ -43,7 +43,10 @@ jobs:
       run: |
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
-        git add dashboard/ramos_con_detalles.json dashboard/ramos_con_detalles.js dashboard/public/images/
+        
+        # SOLUCIÓN 1: Agregar la carpeta entera (Recomendado si quieres guardar todo lo que cambie ahí)
+        git add dashboard/
+        
         # Commitear y pushear solo si hay cambios en los archivos
         if [ -n "$(git status --porcelain dashboard/)" ]; then
           git commit -m "auto: actualizar notas y gráficos"
