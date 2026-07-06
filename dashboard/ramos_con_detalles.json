@@ -1,159 +1,6 @@
 {
     "ramos_con_detalles": [
         {
-            "nombre": "SISTEMAS DISTRIBUIDOS",
-            "nota_final": null,
-            "id_curso": "01003119",
-            "componentes": [
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": null
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": null
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "40%",
-                    "nota": null
-                }
-            ],
-            "semestre": "Semestre 1 (Pre) 2026"
-        },
-        {
-            "nombre": "FORM. Y EVAL. DE PROYECTOS INFORMÁTICOS",
-            "nota_final": null,
-            "id_curso": "01003115",
-            "componentes": [
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "25%",
-                    "nota": 3.6
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "35%",
-                    "nota": 6.7
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "40%",
-                    "nota": null
-                }
-            ],
-            "semestre": "Semestre 1 (Pre) 2026"
-        },
-        {
-            "nombre": "INGENIERÍA DE SOFTWARE II",
-            "nota_final": null,
-            "id_curso": "01003118",
-            "componentes": [
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "20%",
-                    "nota": null
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "20%",
-                    "nota": null
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": null
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": null
-                }
-            ],
-            "semestre": "Semestre 1 (Pre) 2026"
-        },
-        {
-            "nombre": "CALIDAD Y PRODUCTIVIDAD DE SOFTWARE",
-            "nota_final": null,
-            "id_curso": "01003117",
-            "componentes": [
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "20%",
-                    "nota": 5.0
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "25%",
-                    "nota": null
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "25%",
-                    "nota": null
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": null
-                }
-            ],
-            "semestre": "Semestre 1 (Pre) 2026"
-        },
-        {
-            "nombre": "GESTIÓN INFORMÁTICA I",
-            "nota_final": null,
-            "id_curso": "01003116",
-            "componentes": [
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "20%",
-                    "nota": 6.8
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "20%",
-                    "nota": 5.2
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": null
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": null
-                }
-            ],
-            "semestre": "Semestre 1 (Pre) 2026"
-        },
-        {
-            "nombre": "IMPLEMENTACION DE LA R.S.E. Y NUEVOS DES",
-            "nota_final": null,
-            "id_curso": "01005358",
-            "componentes": [
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": 7.0
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": 5.2
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "40%",
-                    "nota": null
-                }
-            ],
-            "semestre": "Semestre 1 (Pre) 2026"
-        },
-        {
             "nombre": "HACIA UNA NUEVA CULTURA EMPRESARIAL",
             "nota_final": 5.9,
             "id_curso": "01005356",
@@ -1248,6 +1095,159 @@
                 }
             ],
             "semestre": "Semestre 2 (Pre) 2021"
+        },
+        {
+            "nombre": "SISTEMAS DISTRIBUIDOS",
+            "nota_final": null,
+            "id_curso": "01003119",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": null
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": null
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "40%",
+                    "nota": null
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2026"
+        },
+        {
+            "nombre": "FORM. Y EVAL. DE PROYECTOS INFORMÁTICOS",
+            "nota_final": null,
+            "id_curso": "01003115",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 3.6
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "35%",
+                    "nota": 6.7
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "40%",
+                    "nota": null
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2026"
+        },
+        {
+            "nombre": "INGENIERÍA DE SOFTWARE II",
+            "nota_final": null,
+            "id_curso": "01003118",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": null
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": null
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": null
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": null
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2026"
+        },
+        {
+            "nombre": "CALIDAD Y PRODUCTIVIDAD DE SOFTWARE",
+            "nota_final": null,
+            "id_curso": "01003117",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 5.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": null
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": null
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": null
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2026"
+        },
+        {
+            "nombre": "GESTIÓN INFORMÁTICA I",
+            "nota_final": null,
+            "id_curso": "01003116",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 6.8
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 5.2
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": null
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": null
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2026"
+        },
+        {
+            "nombre": "IMPLEMENTACION DE LA R.S.E. Y NUEVOS DES",
+            "nota_final": null,
+            "id_curso": "01005358",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 5.2
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "40%",
+                    "nota": null
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2026"
         }
     ]
 }
