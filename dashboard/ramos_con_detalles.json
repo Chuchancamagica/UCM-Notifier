@@ -1144,28 +1144,28 @@
         },
         {
             "nombre": "INGENIERÍA DE SOFTWARE II",
-            "nota_final": null,
+            "nota_final": 6.2,
             "id_curso": "01003118",
             "componentes": [
                 {
                     "nombre": "Parcial",
                     "porcentaje": "20%",
-                    "nota": null
+                    "nota": 6.5
                 },
                 {
                     "nombre": "Parcial",
                     "porcentaje": "20%",
-                    "nota": null
+                    "nota": 6.3
                 },
                 {
                     "nombre": "Parcial",
                     "porcentaje": "30%",
-                    "nota": null
+                    "nota": 6.0
                 },
                 {
                     "nombre": "Parcial",
                     "porcentaje": "30%",
-                    "nota": null
+                    "nota": 6.2
                 }
             ],
             "semestre": "Semestre 1 (Pre) 2026"
