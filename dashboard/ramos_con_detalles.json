@@ -1121,7 +1121,7 @@
         },
         {
             "nombre": "FORM. Y EVAL. DE PROYECTOS INFORMÁTICOS",
-            "nota_final": null,
+            "nota_final": 5.8,
             "id_curso": "01003115",
             "componentes": [
                 {
@@ -1137,7 +1137,7 @@
                 {
                     "nombre": "Parcial",
                     "porcentaje": "40%",
-                    "nota": null
+                    "nota": 6.3
                 }
             ],
             "semestre": "Semestre 1 (Pre) 2026"
