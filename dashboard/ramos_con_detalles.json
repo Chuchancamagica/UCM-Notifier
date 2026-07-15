@@ -1125,29 +1125,6 @@
             "semestre": "Semestre 1 (Pre) 2026"
         },
         {
-            "nombre": "SISTEMAS DISTRIBUIDOS",
-            "nota_final": null,
-            "id_curso": "01003119",
-            "componentes": [
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": 5.2
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": null
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "40%",
-                    "nota": null
-                }
-            ],
-            "semestre": "Semestre 1 (Pre) 2026"
-        },
-        {
             "nombre": "FORM. Y EVAL. DE PROYECTOS INFORMÁTICOS",
             "nota_final": 5.8,
             "id_curso": "01003115",
@@ -1166,6 +1143,29 @@
                     "nombre": "Parcial",
                     "porcentaje": "40%",
                     "nota": 6.3
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2026"
+        },
+        {
+            "nombre": "SISTEMAS DISTRIBUIDOS",
+            "nota_final": null,
+            "id_curso": "01003119",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 5.2
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": null
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "40%",
+                    "nota": null
                 }
             ],
             "semestre": "Semestre 1 (Pre) 2026"
