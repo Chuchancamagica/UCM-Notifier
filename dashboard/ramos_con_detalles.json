@@ -1148,6 +1148,29 @@
             "semestre": "Semestre 1 (Pre) 2026"
         },
         {
+            "nombre": "IMPLEMENTACION DE LA R.S.E. Y NUEVOS DES",
+            "nota_final": 6.2,
+            "id_curso": "01005358",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 5.2
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "40%",
+                    "nota": 6.4
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2026"
+        },
+        {
             "nombre": "SISTEMAS DISTRIBUIDOS",
             "nota_final": null,
             "id_curso": "01003119",
@@ -1222,29 +1245,6 @@
                     "nombre": "Parcial",
                     "porcentaje": "30%",
                     "nota": 6.1
-                }
-            ],
-            "semestre": "Semestre 1 (Pre) 2026"
-        },
-        {
-            "nombre": "IMPLEMENTACION DE LA R.S.E. Y NUEVOS DES",
-            "nota_final": 6.2,
-            "id_curso": "01005358",
-            "componentes": [
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": 7.0
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": 5.2
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "40%",
-                    "nota": 6.4
                 }
             ],
             "semestre": "Semestre 1 (Pre) 2026"
