@@ -1097,6 +1097,62 @@
             "semestre": "Semestre 2 (Pre) 2021"
         },
         {
+            "nombre": "CALIDAD Y PRODUCTIVIDAD DE SOFTWARE",
+            "nota_final": 5.1,
+            "id_curso": "01003117",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 5.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 3.3
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 5.6
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 6.1
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2026"
+        },
+        {
+            "nombre": "INGENIERÍA DE SOFTWARE II",
+            "nota_final": 6.2,
+            "id_curso": "01003118",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 6.5
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 6.3
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 6.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 6.2
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2026"
+        },
+        {
             "nombre": "IMPLEMENTACION DE LA R.S.E. Y NUEVOS DES",
             "nota_final": 6.2,
             "id_curso": "01005358",
@@ -1189,62 +1245,6 @@
                     "nombre": "Parcial",
                     "porcentaje": "40%",
                     "nota": null
-                }
-            ],
-            "semestre": "Semestre 1 (Pre) 2026"
-        },
-        {
-            "nombre": "INGENIERÍA DE SOFTWARE II",
-            "nota_final": 6.2,
-            "id_curso": "01003118",
-            "componentes": [
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "20%",
-                    "nota": 6.5
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "20%",
-                    "nota": 6.3
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": 6.0
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": 6.2
-                }
-            ],
-            "semestre": "Semestre 1 (Pre) 2026"
-        },
-        {
-            "nombre": "CALIDAD Y PRODUCTIVIDAD DE SOFTWARE",
-            "nota_final": 5.1,
-            "id_curso": "01003117",
-            "componentes": [
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "20%",
-                    "nota": 5.0
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "25%",
-                    "nota": 3.3
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "25%",
-                    "nota": 5.6
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": 6.1
                 }
             ],
             "semestre": "Semestre 1 (Pre) 2026"
