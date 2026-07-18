@@ -1097,29 +1097,29 @@
             "semestre": "Semestre 2 (Pre) 2021"
         },
         {
-            "nombre": "CALIDAD Y PRODUCTIVIDAD DE SOFTWARE",
-            "nota_final": 5.1,
-            "id_curso": "01003117",
+            "nombre": "GESTIÓN INFORMÁTICA I",
+            "nota_final": 6.2,
+            "id_curso": "01003116",
             "componentes": [
                 {
                     "nombre": "Parcial",
                     "porcentaje": "20%",
-                    "nota": 5.0
+                    "nota": 6.8
                 },
                 {
                     "nombre": "Parcial",
-                    "porcentaje": "25%",
-                    "nota": 3.3
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "25%",
-                    "nota": 5.6
+                    "porcentaje": "20%",
+                    "nota": 5.2
                 },
                 {
                     "nombre": "Parcial",
                     "porcentaje": "30%",
-                    "nota": 6.1
+                    "nota": 5.8
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 7.0
                 }
             ],
             "semestre": "Semestre 1 (Pre) 2026"
@@ -1153,29 +1153,29 @@
             "semestre": "Semestre 1 (Pre) 2026"
         },
         {
-            "nombre": "GESTIÓN INFORMÁTICA I",
-            "nota_final": 6.2,
-            "id_curso": "01003116",
+            "nombre": "CALIDAD Y PRODUCTIVIDAD DE SOFTWARE",
+            "nota_final": 5.1,
+            "id_curso": "01003117",
             "componentes": [
                 {
                     "nombre": "Parcial",
                     "porcentaje": "20%",
-                    "nota": 6.8
+                    "nota": 5.0
                 },
                 {
                     "nombre": "Parcial",
-                    "porcentaje": "20%",
-                    "nota": 5.2
+                    "porcentaje": "25%",
+                    "nota": 3.3
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 5.6
                 },
                 {
                     "nombre": "Parcial",
                     "porcentaje": "30%",
-                    "nota": 5.8
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": 7.0
+                    "nota": 6.1
                 }
             ],
             "semestre": "Semestre 1 (Pre) 2026"
