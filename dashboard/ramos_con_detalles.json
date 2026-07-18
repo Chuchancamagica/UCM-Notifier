@@ -1097,6 +1097,29 @@
             "semestre": "Semestre 2 (Pre) 2021"
         },
         {
+            "nombre": "SISTEMAS DISTRIBUIDOS",
+            "nota_final": 6.5,
+            "id_curso": "01003119",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 5.2
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 7.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "40%",
+                    "nota": 7.0
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2026"
+        },
+        {
             "nombre": "GESTIÓN INFORMÁTICA I",
             "nota_final": 6.2,
             "id_curso": "01003116",
@@ -1222,29 +1245,6 @@
                     "nombre": "Parcial",
                     "porcentaje": "40%",
                     "nota": 6.3
-                }
-            ],
-            "semestre": "Semestre 1 (Pre) 2026"
-        },
-        {
-            "nombre": "SISTEMAS DISTRIBUIDOS",
-            "nota_final": null,
-            "id_curso": "01003119",
-            "componentes": [
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": 5.2
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": null
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "40%",
-                    "nota": null
                 }
             ],
             "semestre": "Semestre 1 (Pre) 2026"
