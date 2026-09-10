@@ -1097,6 +1097,34 @@
             "semestre": "Semestre 2 (Pre) 2021"
         },
         {
+            "nombre": "CALIDAD Y PRODUCTIVIDAD DE SOFTWARE",
+            "nota_final": 5.1,
+            "id_curso": "01003117",
+            "componentes": [
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "20%",
+                    "nota": 5.0
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 3.3
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "25%",
+                    "nota": 5.6
+                },
+                {
+                    "nombre": "Parcial",
+                    "porcentaje": "30%",
+                    "nota": 6.1
+                }
+            ],
+            "semestre": "Semestre 1 (Pre) 2026"
+        },
+        {
             "nombre": "FORM. Y EVAL. DE PROYECTOS INFORMÁTICOS",
             "nota_final": 5.8,
             "id_curso": "01003115",
@@ -1138,34 +1166,6 @@
                     "nombre": "Parcial",
                     "porcentaje": "40%",
                     "nota": 6.4
-                }
-            ],
-            "semestre": "Semestre 1 (Pre) 2026"
-        },
-        {
-            "nombre": "CALIDAD Y PRODUCTIVIDAD DE SOFTWARE",
-            "nota_final": 5.1,
-            "id_curso": "01003117",
-            "componentes": [
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "20%",
-                    "nota": 5.0
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "25%",
-                    "nota": 3.3
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "25%",
-                    "nota": 5.6
-                },
-                {
-                    "nombre": "Parcial",
-                    "porcentaje": "30%",
-                    "nota": 6.1
                 }
             ],
             "semestre": "Semestre 1 (Pre) 2026"
